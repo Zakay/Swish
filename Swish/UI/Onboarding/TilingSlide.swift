@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct TilingSlide: View {
+struct TilingSlide: OnboardingSlide {
     var isActive: Bool
     let tileHotkey = HotkeyManager.shared.tileHotkey.description
     
@@ -185,3 +185,4 @@ private extension Alignment {
         self == .topLeading || self == .topTrailing || self == .bottomLeading || self == .bottomTrailing || self == .center
     }
 }
+ 

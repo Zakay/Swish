@@ -16,11 +16,10 @@ final class HotKeyMonitor {
     private var isActive = false
     private let movementTracker = WindowMovementTracker.shared
     private var targetWindow: AXUIElement?
+    private var lockedTargetWindow: AXUIElement? // Window locking for persistent tiling
     private var lastActiveWindow: AXUIElement?
     private var lastOperationMousePosition: CGPoint?
-    private var lastArrow: (dir: Direction, time: Date)?
-    private let arrowThreshold: TimeInterval = 0.2 // seconds
-    private var pendingArrowWork: DispatchWorkItem?
+
     private enum Mode { case tile, resize }
     private var mode: Mode = .tile
     private var isMoveOperation = false // Flag for resize mode being used as a move
@@ -35,6 +34,18 @@ final class HotKeyMonitor {
     private var windowMinSize: CGSize = .zero // Baseline min size from window attribute
     private let highlighter = WindowHighlighter.shared
 
+    private var tileKeyCode: UInt16 { HotkeyManager.shared.tileHotkeyCode }
+    private var resizeKeyCode: UInt16 { HotkeyManager.shared.resizeHotkeyCode }
+
+    // MARK: - Properties for arrow key tracking
+    private var pressedArrowKeys: Set<UInt16> = []
+    private let arrowKeyCodes: [UInt16: Direction] = [
+        123: .west,    // Left arrow
+        124: .east,    // Right arrow
+        125: .south,   // Down arrow
+        126: .north    // Up arrow
+    ]
+
     init() {
         NotificationCenter.default.addObserver(self, selector: #selector(screenParamsChanged), name: NSApplication.didChangeScreenParametersNotification, object: nil)
     }
@@ -43,29 +54,100 @@ final class HotKeyMonitor {
         flagsMonitor = NSEvent.addGlobalMonitorForEvents(matching: .flagsChanged) { [weak self] event in
             self?.handleFlags(event)
         }
+        // Add keyDown monitor for modifier+key hotkeys
+        NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { [weak self] event in
+            self?.handleKeyDown(event)
+        }
+        NSEvent.addGlobalMonitorForEvents(matching: .keyUp) { [weak self] event in
+            self?.handleKeyUp(event)
+        }
+    }
+
+    /// Exits any active tiling or resize mode
+    func exitActiveMode() {
+        if isActive {
+            NSLog("🔧 HotKeyMonitor: Exiting active mode via public method")
+            exitSwishMode()
+        }
     }
 
     private func handleFlags(_ event: NSEvent) {
         let tileHotkey = HotkeyManager.shared.tileHotkey
         let resizeHotkey = HotkeyManager.shared.resizeHotkey
-        let mods = event.modifierFlags
+        let mods = event.modifierFlags.intersection([.command, .option, .control, .shift])
 
-        let wantsTile = mods == tileHotkey
-        let wantsResize = mods == resizeHotkey
+        NSLog("[DEBUG] Flag change: mods=%lu, tileHotkey=%lu, resizeHotkey=%lu", mods.rawValue, tileHotkey.rawValue, resizeHotkey.rawValue)
+        NSLog("[DEBUG] tileKeyCode=%d, resizeKeyCode=%d", tileKeyCode, resizeKeyCode)
+
+        // Only handle modifier-only hotkeys here (when keyCode is 0)
+        let wantsTile = (mods == tileHotkey && tileKeyCode == 0)
+        let wantsResize = (mods == resizeHotkey && resizeKeyCode == 0)
+
+        NSLog("[DEBUG] wantsTile=%@, wantsResize=%@", wantsTile ? "YES" : "NO", wantsResize ? "YES" : "NO")
 
         if isActive {
             if wantsResize && mode == .tile {
+                NSLog("[DEBUG] Switching from tile to resize mode")
                 exitSwishMode()
                 enterResizeMode()
             } else if wantsTile && mode == .resize {
+                NSLog("[DEBUG] Switching from resize to tile mode")
                 exitSwishMode()
                 enterSwishMode()
             } else if !wantsResize && !wantsTile {
+                NSLog("[DEBUG] Exiting mode - no modifiers")
                 exitSwishMode()
             }
         } else {
-            if wantsResize { enterResizeMode() }
-            else if wantsTile { enterSwishMode() }
+            if wantsResize { 
+                NSLog("[DEBUG] Entering resize mode")
+                enterResizeMode() 
+            }
+            else if wantsTile { 
+                NSLog("[DEBUG] Entering tiling mode")
+                enterSwishMode() 
+            }
+        }
+    }
+
+    private func handleKeyDown(_ event: NSEvent) {
+        let mods = event.modifierFlags.intersection([.command, .option, .control, .shift])
+        let keyCode = event.keyCode
+        let tileHotkey = HotkeyManager.shared.tileHotkey
+        let resizeHotkey = HotkeyManager.shared.resizeHotkey
+
+        // For modifier+key combinations, check if the key matches
+        let wantsTile = (mods == tileHotkey && (tileKeyCode == 0 || keyCode == tileKeyCode))
+        let wantsResize = (mods == resizeHotkey && (resizeKeyCode == 0 || keyCode == resizeKeyCode))
+
+        if !isActive {
+            if wantsTile {
+                enterSwishMode()
+            } else if wantsResize {
+                enterResizeMode()
+            }
+        }
+    }
+
+    private func handleKeyUp(_ event: NSEvent) {
+        let mods = event.modifierFlags.intersection([.command, .option, .control, .shift])
+        let keyCode = event.keyCode
+        let tileHotkey = HotkeyManager.shared.tileHotkey
+        let resizeHotkey = HotkeyManager.shared.resizeHotkey
+
+        // Only exit if this is a modifier key release that breaks the hotkey combination
+        // For modifier-only hotkeys (keyCode == 0), we should only exit when modifiers change
+        // For modifier+key hotkeys, we should exit when either the modifier or the specific key is released
+        
+        if isActive {
+            let shouldExitForTile = (mode == .tile && tileKeyCode == 0 && mods != tileHotkey) ||
+                                   (mode == .tile && tileKeyCode != 0 && keyCode == tileKeyCode)
+            let shouldExitForResize = (mode == .resize && resizeKeyCode == 0 && mods != resizeHotkey) ||
+                                     (mode == .resize && resizeKeyCode != 0 && keyCode == resizeKeyCode)
+            
+            if shouldExitForTile || shouldExitForResize {
+                exitSwishMode()
+            }
         }
     }
 
@@ -83,6 +165,9 @@ final class HotKeyMonitor {
         } else {
             targetWindow = windowService.windowBelowCursor()
         }
+        
+        // Lock the target window for this tiling session
+        lockedTargetWindow = targetWindow
 
         if let window = targetWindow {
             AXUIElementPerformAction(window, kAXRaiseAction as CFString)
@@ -92,8 +177,13 @@ final class HotKeyMonitor {
         mouseMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.mouseMoved, .leftMouseDragged]) { [weak self] event in
             self?.handleMouseTile(event)
         }
-        arrowMonitor = NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { [weak self] event in
-            self?.handleArrowTile(event)
+        arrowMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.keyDown, .keyUp]) { [weak self] event in
+            if event.type == .keyDown {
+                NSLog("[DEBUG] Tiling mode - Global monitor detected keyDown: keyCode=%d", event.keyCode)
+                self?.handleArrowTile(event)
+            } else if event.type == .keyUp {
+                self?.handleArrowKeyUp(event)
+            }
         }
         DispatchQueue.main.async { NSCursor.closedHand.push() }
         NotificationCenter.default.post(name: .swishModeChanged, object: nil, userInfo: ["active": true, "mode": "tile"])
@@ -104,10 +194,13 @@ final class HotKeyMonitor {
 
     private func exitSwishMode() {
         guard isActive else { return }
+        NSLog("🔍 HotKeyMonitor: EXITING SWISH MODE - called from:")
+        NSLog("🔍 HotKeyMonitor: Stack trace: %@", Thread.callStackSymbols.joined(separator: "\n"))
         mode = .tile // Reset to default
         isActive = false
         isMoveOperation = false // Reset move flag
-        pendingArrowWork?.cancel(); pendingArrowWork = nil; lastArrow = nil
+        pressedArrowKeys.removeAll() // Clear tracked arrow keys
+        lockedTargetWindow = nil // Clear locked window
         if let monitor = mouseMonitor { NSEvent.removeMonitor(monitor) }
         if let monitor = arrowMonitor { NSEvent.removeMonitor(monitor) }
         NotificationCenter.default.post(name: .swishModeChanged, object: nil, userInfo: ["active": false])
@@ -124,51 +217,108 @@ final class HotKeyMonitor {
     }
 
     private func handleArrowTile(_ event: NSEvent) {
-        guard let sk = event.specialKey else { return }
-        let dir: Direction?
-        switch sk {
-        case .upArrow: dir = .north
-        case .downArrow: dir = .south
-        case .leftArrow: dir = .west
-        case .rightArrow: dir = .east
-        default: dir = nil
-        }
-        guard let direction = dir else { return }
-
-        let now = Date()
-
-        if let last = lastArrow, now.timeIntervalSince(last.time) < arrowThreshold {
-            pendingArrowWork?.cancel(); pendingArrowWork = nil
-            var finalDirection = last.dir
-            switch (last.dir, direction) {
-            case (.north, .west), (.west, .north): finalDirection = .northWest
-            case (.north, .east), (.east, .north): finalDirection = .northEast
-            case (.south, .west), (.west, .south): finalDirection = .southWest
-            case (.south, .east), (.east, .south): finalDirection = .southEast
-            default: finalDirection = direction
-            }
-            performMove(direction: finalDirection)
+        let mods = event.modifierFlags.intersection([.command, .option, .control, .shift])
+        let keyCode = event.keyCode
+        
+        NSLog("🔍 HotKeyMonitor: Tiling mode keyDown - keyCode=%d, mods=%lu", 
+              keyCode, mods.rawValue)
+        NSLog("🔍 HotKeyMonitor: Current targetWindow=%@, lockedTargetWindow=%@", 
+              targetWindow != nil ? "SET" : "NIL", lockedTargetWindow != nil ? "SET" : "NIL")
+        
+        // Check if it's an arrow key
+        guard arrowKeyCodes[keyCode] != nil else {
+            // Non-arrow key pressed - exit tiling mode
+            NSLog("🔍 HotKeyMonitor: Non-arrow key pressed in tiling mode, exiting")
             exitSwishMode()
-        } else {
-            lastArrow = (direction, now)
-            let work = DispatchWorkItem { [weak self] in
-                self?.performMove(direction: direction)
-                self?.exitSwishMode()
-            }
-            pendingArrowWork = work
-            DispatchQueue.main.asyncAfter(deadline: .now() + arrowThreshold, execute: work)
+            return
         }
+        
+        // Add this arrow key to pressed keys
+        pressedArrowKeys.insert(keyCode)
+        
+        // Determine direction based on currently pressed arrow keys
+        let direction = determineDirectionFromPressedKeys()
+        
+        guard let dir = direction else {
+            // Invalid combination, exit tiling mode
+            NSLog("🔍 HotKeyMonitor: Invalid arrow key combination, exiting")
+            exitSwishMode()
+            return
+        }
+        
+        NSLog("🔍 HotKeyMonitor: Executing arrow tile in direction: %@", String(describing: dir))
+        
+        // Execute immediately - no delays
+        performMove(direction: dir, fromKeyboard: true)
     }
 
-    private func performMove(direction: Direction) {
-        guard let window = targetWindow else { return }
+    private func handleArrowKeyUp(_ event: NSEvent) {
+        let keyCode = event.keyCode
+        
+        // Remove this arrow key from pressed keys
+        pressedArrowKeys.remove(keyCode)
+        
+        // No action needed on key up - moves happen on key down
+    }
+    
+    private func determineDirectionFromPressedKeys() -> Direction? {
+        let directions = pressedArrowKeys.compactMap { arrowKeyCodes[$0] }
+        
+        // Handle single directions
+        if directions.count == 1 {
+            return directions.first
+        }
+        
+        // Handle corner directions (two keys pressed)
+        if directions.count == 2 {
+            let directionSet = Set(directions)
+            
+            if directionSet.contains(.north) && directionSet.contains(.west) {
+                return .northWest
+            } else if directionSet.contains(.north) && directionSet.contains(.east) {
+                return .northEast
+            } else if directionSet.contains(.south) && directionSet.contains(.west) {
+                return .southWest
+            } else if directionSet.contains(.south) && directionSet.contains(.east) {
+                return .southEast
+            }
+        }
+        
+        // Invalid combination (more than 2 keys or conflicting directions)
+        return nil
+    }
+
+    private func performMove(direction: Direction, fromKeyboard: Bool = false) {
+        // For keyboard operations, always use the locked target window
+        let window = fromKeyboard ? (lockedTargetWindow ?? targetWindow) : targetWindow
+        guard let window = window else { 
+            NSLog("🔍 HotKeyMonitor: performMove - no target window available")
+            return 
+        }
+        
+        NSLog("🔍 HotKeyMonitor: performMove - using window, fromKeyboard=%@", fromKeyboard ? "YES" : "NO")
+        
         if windowService.apply(direction: direction, to: window) {
             lastActiveWindow = window
-            lastOperationMousePosition = NSEvent.mouseLocation
+            // For keyboard operations, also update the locked target to the same window
+            // to ensure consistency
+            if fromKeyboard {
+                lockedTargetWindow = window
+            } else {
+                lastOperationMousePosition = NSEvent.mouseLocation
+            }
+            
             if let actualFrame = WindowService.frame(of: window) {
                 highlighter.show(frame: actualFrame, color: NSColor.controlAccentColor)
                 movementTracker.record(window: window, direction: direction)
+                
+                // For keyboard operations, keep the highlight persistent
+                if fromKeyboard {
+                    NSLog("🔍 HotKeyMonitor: Maintaining persistent highlight for keyboard operation")
+                }
             }
+        } else {
+            NSLog("🔍 HotKeyMonitor: performMove - windowService.apply failed")
         }
     }
 
@@ -209,15 +359,20 @@ final class HotKeyMonitor {
         mouseMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.mouseMoved, .leftMouseDragged]) { [weak self] event in
             self?.handleMouseResize(event)
         }
-        arrowMonitor = NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { [weak self] event in
-            self?.handleArrowResize(event)
+        arrowMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.keyDown, .keyUp]) { [weak self] event in
+            if event.type == .keyDown {
+                NSLog("[DEBUG] Resize mode - Global monitor detected keyDown: keyCode=%d", event.keyCode)
+                self?.handleArrowResize(event)
+            } else if event.type == .keyUp {
+                self?.handleArrowResizeKeyUp(event)
+            }
         }
 
         if isMoveOperation {
             DispatchQueue.main.async { NSCursor.openHand.push() }
         } else {
             // TODO: Change cursor based on edges
-            DispatchQueue.main.async { NSCursor.resizeLeftRight.push() }
+        DispatchQueue.main.async { NSCursor.resizeLeftRight.push() }
         }
         highlighter.show(
             frame: initialFrame,
@@ -236,7 +391,7 @@ final class HotKeyMonitor {
 
         // If it's a move operation, just change the origin.
         if isMoveOperation {
-            var newFrame = initialFrame
+        var newFrame = initialFrame
             newFrame.origin.x += dx
             newFrame.origin.y += dy
 
@@ -308,7 +463,19 @@ final class HotKeyMonitor {
     }
 
     private func handleArrowResize(_ event: NSEvent) {
-        guard let sk = event.specialKey, let window = targetWindow, var frame = WindowService.frame(of: window) else { return }
+        // Check if this is an arrow key for resize operations
+        let mods = event.modifierFlags.intersection([.command, .option, .control, .shift])
+        let keyCode = event.keyCode
+        
+        NSLog("🔍 HotKeyMonitor: Resize mode keyDown - keyCode=%d, mods=%lu", 
+              keyCode, mods.rawValue)
+        
+        guard let sk = event.specialKey else {
+            // Non-arrow key pressed - exit resize mode to let system handle it  
+            exitSwishMode()
+            return
+        }
+        guard let window = targetWindow, var frame = WindowService.frame(of: window) else { return }
         let step: CGFloat = 10.0
 
         let originalFrame = frame
@@ -328,6 +495,11 @@ final class HotKeyMonitor {
         if let actual = WindowService.frame(of: window) {
             highlighter.show(frame: actual, color: NSColor.systemPurple, emphasis: edgeMask(), showGrid: true)
         }
+    }
+
+    private func handleArrowResizeKeyUp(_ event: NSEvent) {
+        // For resize mode, we don't need special keyUp handling since resize is immediate
+        // This is just a placeholder to match the monitor setup
     }
 
     private func queryMinSize(for window: AXUIElement) -> CGSize? {

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MonitorSlide: View {
+struct MonitorSlide: OnboardingSlide {
     var isActive: Bool
     let tileHotkey = HotkeyManager.shared.tileHotkey.description
     @State private var screenIndex = 0

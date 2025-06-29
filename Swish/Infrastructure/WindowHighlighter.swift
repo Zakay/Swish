@@ -18,8 +18,8 @@ final class WindowHighlighter {
         
         highlightWindow = NSWindow(
             contentRect: .zero,
-            styleMask: .borderless,
-            backing: .buffered,
+                                        styleMask: .borderless,
+                                        backing: .buffered,
             defer: false
         )
         highlightWindow.isOpaque = false

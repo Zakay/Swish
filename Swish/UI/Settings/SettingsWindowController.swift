@@ -8,7 +8,7 @@ fileprivate class ContentSizedHostingController<Content: View>: NSHostingControl
     }
 }
 
-class SettingsWindowController: NSWindowController {
+class SettingsWindowController: NSWindowController, NSWindowDelegate {
     convenience init() {
         let rootView = SettingsView()
         let hostingController = ContentSizedHostingController(rootView: rootView)
@@ -16,11 +16,18 @@ class SettingsWindowController: NSWindowController {
         window.styleMask.remove(.resizable)
         window.title = "Swish Settings"
         self.init(window: window)
+        window.delegate = self
     }
 
     func show() {
         window?.center()
         window?.makeKeyAndOrderFront(nil)
+        window?.orderFrontRegardless()
         NSApp.activate(ignoringOtherApps: true)
+    }
+    
+    func windowWillClose(_ notification: Notification) {
+        // Ensure the app is properly hidden when the settings window closes
+        NSApp.hide(nil)
     }
 } 

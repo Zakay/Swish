@@ -1,11 +1,16 @@
+import Carbon
 import SwiftUI
 import ServiceManagement
 
 struct GeneralView: View {
     @StateObject private var loginItemManager = LoginItemManager()
+    @ObservedObject private var hotkeyManager = HotkeyManager.shared
     @State private var showingTileHotkeyRecorder = false
     @State private var showingResizeHotkeyRecorder = false
+    @State private var showingSaveProfileHotkeyRecorder = false
     @State private var onboardingWindowController: OnboardingWindowController?
+    @State private var saveProfileHotkeyInitialModifiers: NSEvent.ModifierFlags? = nil
+    @State private var saveProfileHotkeyInitialKeyCode: UInt16? = nil
 
     var body: some View {
         Form {
@@ -13,11 +18,14 @@ struct GeneralView: View {
                 HStack {
                     Text("Tiling Mode:")
                     Spacer()
-                    Button(HotkeyManager.shared.tileHotkey.description) {
+                    Button(hotkeyDescription(mods: hotkeyManager.tileHotkey, keyCode: hotkeyManager.tileHotkeyCode)) {
                         showingTileHotkeyRecorder = true
                     }
                     .sheet(isPresented: $showingTileHotkeyRecorder) {
-                        HotkeyRecorderView(isPresented: $showingTileHotkeyRecorder, hotkeyType: .tile)
+                        HotkeyRecorderView(isPresented: $showingTileHotkeyRecorder, initialModifiers: hotkeyManager.tileHotkey, initialKeyCode: hotkeyManager.tileHotkeyCode) { modifiers, keyCode, character in
+                            hotkeyManager.tileHotkey = modifiers
+                            hotkeyManager.tileHotkeyCode = keyCode
+                        }
                     }
                 }
                 .padding(.vertical, 4)
@@ -25,11 +33,32 @@ struct GeneralView: View {
                 HStack {
                     Text("Resize Mode:")
                     Spacer()
-                    Button(HotkeyManager.shared.resizeHotkey.description) {
+                    Button(hotkeyDescription(mods: hotkeyManager.resizeHotkey, keyCode: hotkeyManager.resizeHotkeyCode)) {
                         showingResizeHotkeyRecorder = true
                     }
                     .sheet(isPresented: $showingResizeHotkeyRecorder) {
-                        HotkeyRecorderView(isPresented: $showingResizeHotkeyRecorder, hotkeyType: .resize)
+                        HotkeyRecorderView(isPresented: $showingResizeHotkeyRecorder, initialModifiers: hotkeyManager.resizeHotkey, initialKeyCode: hotkeyManager.resizeHotkeyCode) { modifiers, keyCode, character in
+                            hotkeyManager.resizeHotkey = modifiers
+                            hotkeyManager.resizeHotkeyCode = keyCode
+                        }
+                    }
+                }
+                .padding(.vertical, 4)
+
+                HStack {
+                    Text("Save Layout as Profile:")
+                    Spacer()
+                    Button(saveProfileHotkeyDescription()) {
+                        saveProfileHotkeyInitialModifiers = hotkeyManager.saveProfileHotkey
+                        saveProfileHotkeyInitialKeyCode = hotkeyManager.saveProfileHotkeyCode
+                        showingSaveProfileHotkeyRecorder = true
+                    }
+                    .sheet(isPresented: $showingSaveProfileHotkeyRecorder) {
+                        HotkeyRecorderView(isPresented: $showingSaveProfileHotkeyRecorder, initialModifiers: saveProfileHotkeyInitialModifiers, initialKeyCode: saveProfileHotkeyInitialKeyCode) { modifiers, keyCode, character in
+                            hotkeyManager.saveProfileHotkey = modifiers
+                            hotkeyManager.saveProfileHotkeyCode = keyCode
+                            hotkeyManager.saveProfileHotkeyCharacter = character
+                        }
                     }
                 }
                 .padding(.vertical, 4)
@@ -68,6 +97,17 @@ struct GeneralView: View {
             onboardingWindowController = OnboardingWindowController()
         }
         onboardingWindowController?.showWindow(nil)
+    }
+
+    private func hotkeyDescription(mods: NSEvent.ModifierFlags, keyCode: UInt16) -> String {
+        return NSEvent.ModifierFlags.hotkeyDescription(modifiers: mods, keyCode: keyCode)
+    }
+
+    private func saveProfileHotkeyDescription() -> String {
+        return NSEvent.ModifierFlags.hotkeyDescription(
+            modifiers: hotkeyManager.saveProfileHotkey, 
+            keyCode: hotkeyManager.saveProfileHotkeyCode
+        )
     }
 }
 

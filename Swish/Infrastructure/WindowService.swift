@@ -60,7 +60,7 @@ final class WindowService {
             return setFrame(targetFrameOnCurrentScreen, for: window)
         }
     }
-    
+
     // MARK: - Accessibility Helpers
 
     func windowBelowCursor() -> AXUIElement? {
@@ -153,4 +153,4 @@ extension CGRect {
                abs(self.width - other.width) < tolerance &&
                abs(self.height - other.height) < tolerance
     }
-}
+} 

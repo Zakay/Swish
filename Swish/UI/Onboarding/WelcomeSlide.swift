@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct WelcomeSlide: View {
+struct WelcomeSlide: OnboardingSlide {
     var body: some View {
         VStack(spacing: 20) {
             if let icon = NSImage(named: "AppIcon") {

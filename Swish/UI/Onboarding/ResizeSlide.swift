@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ResizeSlide: View {
+struct ResizeSlide: OnboardingSlide {
     var isActive: Bool
     let resizeHotkey = HotkeyManager.shared.resizeHotkey.description
     

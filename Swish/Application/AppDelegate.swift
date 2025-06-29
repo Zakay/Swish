@@ -1,4 +1,6 @@
 import AppKit
+import UserNotifications
+import SwiftUI
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusController: StatusItemController!
@@ -6,6 +8,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var onboardingWindowController: OnboardingWindowController?
     private var hotKeyMonitor: HotKeyMonitor?
     private var permissionPoller: Timer?
+    private var saveProfileWindowController: SaveProfileWindowController?
 
     private func ensureSingleInstance() {
         guard let bundleID = Bundle.main.bundleIdentifier else { return }
@@ -16,9 +19,37 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Ensure the app runs as an agent (no dock icon)
+        NSApp.setActivationPolicy(.accessory)
+        
         ensureSingleInstance()
         
         statusController = StatusItemController()
+        
+        // Set up save profile hotkey handler FIRST
+        HotkeyManager.shared.onSaveProfileHotkey = {
+            NSLog("[DEBUG] Save profile hotkey handler triggered!")
+            
+            // Exit any active tiling or resize mode first
+            self.hotKeyMonitor?.exitActiveMode()
+            
+            DispatchQueue.main.async {
+                NSLog("[DEBUG] About to show save profile window controller")
+                if self.saveProfileWindowController == nil {
+                    self.saveProfileWindowController = SaveProfileWindowController()
+                    NSLog("[DEBUG] Created new SaveProfileWindowController")
+                }
+                self.saveProfileWindowController?.show(onDismiss: {
+                    NSLog("[DEBUG] Save profile window dismissed")
+                    self.saveProfileWindowController = nil
+                })
+                NSLog("[DEBUG] Called show() on SaveProfileWindowController")
+            }
+        }
+        
+        // Install unified Carbon hotkey handler AFTER callback is set up
+        HotkeyManager.installCarbonHotkeyHandler()
+        HotkeyManager.shared.registerAllProfileHotkeys()
         
         // Show onboarding if it hasn't been hidden
         if !UserDefaults.standard.bool(forKey: "hideOnboarding") {
@@ -29,6 +60,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             showAccessibilityAlertAndStartPolling()
         } else {
             bootstrapApp()
+        }
+        
+        // Request notification permissions
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if let error = error {
+                print("Notification permission error: \(error)")
+            } else {
+                print("Notification permission granted: \(granted)")
+            }
         }
     }
 

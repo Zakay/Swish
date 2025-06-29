@@ -5,12 +5,15 @@ struct OnboardingView: View {
     @AppStorage("hideOnboarding") private var hideOnboarding = false
     @State private var shouldHideOnboarding = true
     
-    private let slides: [AnyView] = [
-        AnyView(WelcomeSlide()),
-        AnyView(TilingSlide(isActive: false)),
-        AnyView(MonitorSlide(isActive: false)),
-        AnyView(ResizeSlide(isActive: false))
-    ]
+    private var slides: [any OnboardingSlide] {
+        [
+            WelcomeSlide(),
+            ResizeSlide(isActive: selection == 1),
+            TilingSlide(isActive: selection == 2),
+            MonitorSlide(isActive: selection == 3),
+            ProfileSlide()
+        ]
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -87,9 +90,10 @@ struct OnboardingView: View {
     private func slideView(at index: Int) -> some View {
         switch index {
         case 0: WelcomeSlide()
-        case 1: TilingSlide(isActive: selection == index)
-        case 2: MonitorSlide(isActive: selection == index)
-        case 3: ResizeSlide(isActive: selection == index)
+        case 1: ResizeSlide(isActive: selection == index)
+        case 2: TilingSlide(isActive: selection == index)
+        case 3: MonitorSlide(isActive: selection == index)
+        case 4: ProfileSlide()
         default: EmptyView()
         }
     }

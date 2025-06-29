@@ -7,6 +7,7 @@ struct SettingsView: View {
         VStack {
             Picker("", selection: $selectedTab) {
                 Text("General").tag("General")
+                Text("Profiles").tag("Profiles")
                 Text("About").tag("About")
             }
             .pickerStyle(.segmented)
@@ -14,6 +15,8 @@ struct SettingsView: View {
 
             if selectedTab == "General" {
                 GeneralView()
+            } else if selectedTab == "Profiles" {
+                ProfilesView()
             } else {
                 AboutView()
             }
