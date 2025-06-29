@@ -1,6 +1,9 @@
 # Swish
+![image](https://github.com/user-attachments/assets/681178af-c152-46c3-9e60-145212a16e3d)
 
 A **macOS menu‑bar window manager** that lets you *swish* windows into place—throw, resize, and move them across multiple monitors with keys or a flick of the mouse, no title bars or edges required.
+
+![ezgif-8caee868b368df](https://github.com/user-attachments/assets/5f515a2a-d705-46ab-bc43-d29d26092b7d)
 
 ---
 
