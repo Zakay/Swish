@@ -213,6 +213,7 @@ final class HotKeyMonitor {
         }
         DispatchQueue.main.async { NSCursor.closedHand.push() }
         NotificationCenter.default.post(name: .swishModeChanged, object: nil, userInfo: ["active": true, "mode": "tile"])
+        WindowService.isTileModeActive = true
         if let window = targetWindow, let frame = WindowService.frame(of: window) {
             highlighter.show(frame: frame, color: NSColor.controlAccentColor)
         }
@@ -230,6 +231,7 @@ final class HotKeyMonitor {
         if let monitor = mouseMonitor { NSEvent.removeMonitor(monitor) }
         if let monitor = arrowMonitor { NSEvent.removeMonitor(monitor) }
         NotificationCenter.default.post(name: .swishModeChanged, object: nil, userInfo: ["active": false])
+        WindowService.isTileModeActive = false
         highlighter.hide()
         DispatchQueue.main.async { NSCursor.pop() }
     }
@@ -324,7 +326,7 @@ final class HotKeyMonitor {
         
         NSLog("🔍 HotKeyMonitor: performMove - using window, fromKeyboard=%@", fromKeyboard ? "YES" : "NO")
         
-        if windowService.apply(direction: direction, to: window) {
+        if windowService.apply(direction: direction, to: window, showFinalHighlight: false) {
             // Only raise the window after a successful move
             raiseWindowIfNeeded(window)
             
@@ -338,13 +340,13 @@ final class HotKeyMonitor {
             }
             
             if let actualFrame = WindowService.frame(of: window) {
-                highlighter.show(frame: actualFrame, color: NSColor.controlAccentColor)
-                movementTracker.record(window: window, direction: direction)
-                
-                // For keyboard operations, keep the highlight persistent
+                // Only show immediate highlight for keyboard operations
+                // For mouse operations, the mode will be exited immediately, so don't show highlight
                 if fromKeyboard {
+                    highlighter.show(frame: actualFrame, color: NSColor.controlAccentColor)
                     NSLog("🔍 HotKeyMonitor: Maintaining persistent highlight for keyboard operation")
                 }
+                movementTracker.record(window: window, direction: direction)
             }
         } else {
             NSLog("🔍 HotKeyMonitor: performMove - windowService.apply failed")
@@ -407,6 +409,7 @@ final class HotKeyMonitor {
             showGrid: !isMoveOperation
         )
         NotificationCenter.default.post(name: .swishModeChanged, object: nil, userInfo: ["active": true, "mode": "resize"])
+        WindowService.isTileModeActive = false
     }
 
     private func handleMouseResize(_ event: NSEvent) {

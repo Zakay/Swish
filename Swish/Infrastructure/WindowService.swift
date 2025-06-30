@@ -6,10 +6,13 @@ final class WindowService {
     private let animationDuration: TimeInterval = 0.15 // 150ms as requested
     private var activeAnimations: [CFHashCode: Timer] = [:]
     
+    // MARK: - Mode State Tracking
+    static var isTileModeActive: Bool = false
+    
     // MARK: - Tiling Actions
 
     @discardableResult
-    func apply(direction: Direction, to window: AXUIElement) -> Bool {
+    func apply(direction: Direction, to window: AXUIElement, showFinalHighlight: Bool = true) -> Bool {
         guard let currentFrame = Self.frame(of: window),
               let currentScreen = NSScreen.screens.first(where: { $0.frame.intersects(currentFrame) })
         else {
@@ -53,7 +56,7 @@ final class WindowService {
             // If we found a valid next screen, move the window there.
             if let nextScreen = nextScreen, nextScreen != currentScreen {
                 let targetFrameOnNextScreen = WindowLayout.frame(for: direction, on: nextScreen)
-                return setFrameAnimated(targetFrameOnNextScreen, for: window)
+                return setFrameAnimated(targetFrameOnNextScreen, for: window, showFinalHighlight: showFinalHighlight)
             } else {
                 // We're at the edge of the desktop on a single-screen setup, so do nothing.
                 return true
@@ -61,7 +64,7 @@ final class WindowService {
 
         } else {
             // Otherwise, just move it to the target spot on the current screen.
-            return setFrameAnimated(targetFrameOnCurrentScreen, for: window)
+            return setFrameAnimated(targetFrameOnCurrentScreen, for: window, showFinalHighlight: showFinalHighlight)
         }
     }
 
@@ -110,7 +113,7 @@ final class WindowService {
     /// Sets the frame of a window with smooth animation using cubic easing.
     /// Expects the frame to be in Cocoa's coordinate system (bottom-left origin).
     @discardableResult
-    func setFrameAnimated(_ targetFrame: CGRect, for window: AXUIElement) -> Bool {
+    func setFrameAnimated(_ targetFrame: CGRect, for window: AXUIElement, showFinalHighlight: Bool = true) -> Bool {
         guard let currentFrame = Self.frame(of: window) else { return false }
         
         // If frames are already very close, just set directly
@@ -136,7 +139,8 @@ final class WindowService {
             window: window,
             startFrame: currentFrame,
             targetFrame: targetFrame,
-            startTime: CACurrentMediaTime()
+            startTime: CACurrentMediaTime(),
+            showFinalHighlight: showFinalHighlight
         )
         
         // Create timer for animation updates (~60fps)
@@ -186,8 +190,10 @@ final class WindowService {
             let windowHash = CFHash(context.window)
             activeAnimations.removeValue(forKey: windowHash)
             
-            // Show final highlight position
-            WindowHighlighter.shared.show(frame: context.targetFrame, color: NSColor.controlAccentColor)
+            // Show final highlight position only if tile mode is still active
+            if context.showFinalHighlight && Self.isTileModeActive {
+                WindowHighlighter.shared.show(frame: context.targetFrame, color: NSColor.controlAccentColor)
+            }
             return
         }
         
@@ -204,8 +210,10 @@ final class WindowService {
         // Apply the interpolated frame
         _ = setFrame(currentFrame, for: context.window)
         
-        // Update highlighter to stay perfectly synchronized
-        WindowHighlighter.shared.show(frame: currentFrame, color: NSColor.controlAccentColor)
+        // Update highlighter to stay perfectly synchronized only if tile mode is still active
+        if Self.isTileModeActive {
+            WindowHighlighter.shared.show(frame: currentFrame, color: NSColor.controlAccentColor)
+        }
     }
     
     /// Simple cubic ease-out function (no bounce)
@@ -254,12 +262,14 @@ private class WindowAnimationContext {
     let startFrame: CGRect
     let targetFrame: CGRect
     let startTime: TimeInterval
+    let showFinalHighlight: Bool
     
-    init(window: AXUIElement, startFrame: CGRect, targetFrame: CGRect, startTime: TimeInterval) {
+    init(window: AXUIElement, startFrame: CGRect, targetFrame: CGRect, startTime: TimeInterval, showFinalHighlight: Bool) {
         self.window = window
         self.startFrame = startFrame
         self.targetFrame = targetFrame
         self.startTime = startTime
+        self.showFinalHighlight = showFinalHighlight
     }
 }
 
