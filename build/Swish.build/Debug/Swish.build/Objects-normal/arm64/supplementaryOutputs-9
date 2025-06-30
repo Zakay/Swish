@@ -1,0 +1,18 @@
+"/Users/zakay/dev/Swish/Swish/UI/ContentView.swift":
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ContentView.swiftdeps"
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ContentView.d"
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ContentView.swiftconstvalues"
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ContentView.o"
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ContentView.dia"
+"/Users/zakay/dev/Swish/Swish/UI/Onboarding/MonitorSlide.swift":
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/MonitorSlide.dia"
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/MonitorSlide.d"
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/MonitorSlide.swiftconstvalues"
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/MonitorSlide.o"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/MonitorSlide.swiftdeps"
+"/Users/zakay/dev/Swish/Swish/Domain/VectorDetector.swift":
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/VectorDetector.swiftconstvalues"
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/VectorDetector.d"
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/VectorDetector.o"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/VectorDetector.swiftdeps"
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/VectorDetector.dia"

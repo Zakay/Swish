@@ -45,7 +45,13 @@ final class ProfileManager: ObservableObject {
     /// Returns all profiles
     func getAllProfiles() -> [WindowProfile] { profiles }
     
-
+    /// Returns profiles that match the current monitor setup
+    func getProfilesForCurrentSetup() -> [WindowProfile] {
+        let currentSetup = getCurrentMonitorSetup()
+        return profiles.filter { profile in
+            isMonitorSetupCompatible(profile.monitorSetup, with: currentSetup)
+        }
+    }
     
     // MARK: - Window State Management
     
@@ -672,7 +678,7 @@ final class ProfileManager: ObservableObject {
             return ScreenInfo(frame: percentageFrame, position: position, actualAspectRatio: actualAspectRatio)
         }
         
-        return MonitorSetup(name: "Setup", screens: screenInfos)
+        return MonitorSetup(name: "Current Setup", screens: screenInfos)
     }
     
     func isMonitorSetupCompatible(_ saved: MonitorSetup, with current: MonitorSetup) -> Bool {

@@ -1,0 +1,18 @@
+"/Users/zakay/dev/Swish/Swish/UI/Onboarding/TilingSlide.swift":
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/TilingSlide.swiftdeps"
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/TilingSlide.swiftconstvalues"
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/TilingSlide.d"
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/TilingSlide.o"
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/TilingSlide.dia"
+"/Users/zakay/dev/Swish/Swish/Infrastructure/WindowMovementTracker.swift":
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/WindowMovementTracker.o"
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/WindowMovementTracker.d"
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/WindowMovementTracker.swiftconstvalues"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/WindowMovementTracker.swiftdeps"
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/WindowMovementTracker.dia"
+"/Users/zakay/dev/Swish/Swish/UI/Onboarding/ProfileSlide.swift":
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/ProfileSlide.o"
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/ProfileSlide.d"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/ProfileSlide.swiftdeps"
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/ProfileSlide.swiftconstvalues"
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/ProfileSlide.dia"

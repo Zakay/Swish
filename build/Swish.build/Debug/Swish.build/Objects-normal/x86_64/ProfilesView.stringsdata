@@ -1,0 +1,120 @@
+{
+  "source": "/Users/zakay/dev/Swish/Swish/UI/Settings/ProfilesView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Profile Name",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "Apply",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 53
+        }
+      },
+      {
+        "comment": "",
+        "key": "Delete",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 69
+        }
+      },
+      {
+        "comment": "",
+        "key": "No screens",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 105
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld windows across %lld apps",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 375
+        }
+      },
+      {
+        "comment": "",
+        "key": "+%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 400
+        }
+      },
+      {
+        "comment": "",
+        "key": "Save Profile",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 520
+        }
+      },
+      {
+        "comment": "",
+        "key": "Profiles",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 489
+        }
+      },
+      {
+        "comment": "",
+        "key": "No profiles yet",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 505
+        }
+      },
+      {
+        "comment": "",
+        "key": "Save Current Layout as Profile",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 509
+        }
+      },
+      {
+        "comment": "",
+        "key": "Profile Name",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 521
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cancel",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 530
+        }
+      },
+      {
+        "comment": "",
+        "key": "Save",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 533
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enter a name for your new profile",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 542
+        }
+      }
+    ]
+  },
+  "version": 1
+}

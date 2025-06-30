@@ -1,0 +1,32 @@
+{
+  "source": "/Users/zakay/dev/Swish/Swish/UI/Onboarding/TilingSlide.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Tiling Mode",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 22
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hold %@ and move your mouse to snap windows into place instantly.\nYou can only trigger one action once per hotkey press.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hold %@",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 52
+        }
+      }
+    ]
+  },
+  "version": 1
+}

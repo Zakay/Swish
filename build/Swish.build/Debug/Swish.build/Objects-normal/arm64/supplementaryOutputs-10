@@ -1,0 +1,18 @@
+"/Users/zakay/dev/Swish/Swish/Application/HotkeyManager.swift":
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyManager.d"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyManager.swiftdeps"
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyManager.dia"
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyManager.swiftconstvalues"
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyManager.o"
+"/Users/zakay/dev/Swish/Swish/Application/AppDelegate.swift":
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AppDelegate.dia"
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AppDelegate.o"
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AppDelegate.swiftconstvalues"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AppDelegate.swiftdeps"
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AppDelegate.d"
+"/Users/zakay/dev/Swish/Swish/UI/Settings/SettingsWindowController.swift":
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsWindowController.d"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsWindowController.swiftdeps"
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsWindowController.dia"
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsWindowController.swiftconstvalues"
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsWindowController.o"

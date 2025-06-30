@@ -1,0 +1,32 @@
+{
+  "source": "/Users/zakay/dev/Swish/Swish/UI/Onboarding/ResizeSlide.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Resize & Move Mode",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hold %@, then drag from a corner to resize or from the center to move.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hold %@",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 47
+        }
+      }
+    ]
+  },
+  "version": 1
+}

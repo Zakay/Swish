@@ -1,0 +1,18 @@
+"/Users/zakay/dev/Swish/Swish/Domain/Profile.swift":
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Profile.swiftconstvalues"
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Profile.d"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Profile.swiftdeps"
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Profile.o"
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Profile.dia"
+"/Users/zakay/dev/Swish/Swish/UI/Onboarding/OnboardingWindowController.swift":
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingWindowController.swiftconstvalues"
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingWindowController.dia"
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingWindowController.o"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingWindowController.swiftdeps"
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingWindowController.d"
+"/Users/zakay/dev/Swish/Swish/UI/Settings/AboutView.swift":
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AboutView.d"
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AboutView.dia"
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AboutView.o"
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AboutView.swiftconstvalues"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AboutView.swiftdeps"

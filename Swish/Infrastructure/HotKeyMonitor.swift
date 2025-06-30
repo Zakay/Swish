@@ -46,6 +46,36 @@ final class HotKeyMonitor {
         126: .north    // Up arrow
     ]
 
+    // MARK: - Auto-raise helper
+    private func raiseWindowIfNeeded(_ window: AXUIElement) {
+        // Get the current frontmost application
+        guard let frontmostApp = NSWorkspace.shared.frontmostApplication else { return }
+        
+        // Get the window's application
+        var pid: pid_t = 0
+        guard AXUIElementGetPid(window, &pid) == .success else { return }
+        
+        // If the window belongs to the frontmost app, it's likely already on top
+        if pid == frontmostApp.processIdentifier {
+            // Check if this specific window is the frontmost window
+            let appElement = AXUIElementCreateApplication(pid)
+            var windows: CFTypeRef?
+            
+            if AXUIElementCopyAttributeValue(appElement, kAXWindowsAttribute as CFString, &windows) == .success,
+               let windowList = windows as? [AXUIElement],
+               let firstWindow = windowList.first {
+                // If this window is the first (frontmost) window of the frontmost app, don't raise
+                if firstWindow == window {
+                    return
+                }
+            }
+        }
+        
+        // Only raise if the window is not already the frontmost
+        // This should minimize the blip sounds by avoiding unnecessary raises
+        AXUIElementPerformAction(window, kAXRaiseAction as CFString)
+    }
+
     init() {
         NotificationCenter.default.addObserver(self, selector: #selector(screenParamsChanged), name: NSApplication.didChangeScreenParametersNotification, object: nil)
     }
@@ -169,10 +199,6 @@ final class HotKeyMonitor {
         // Lock the target window for this tiling session
         lockedTargetWindow = targetWindow
 
-        if let window = targetWindow {
-            AXUIElementPerformAction(window, kAXRaiseAction as CFString)
-        }
-
         detector.reset(origin: NSEvent.mouseLocation)
         mouseMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.mouseMoved, .leftMouseDragged]) { [weak self] event in
             self?.handleMouseTile(event)
@@ -281,8 +307,8 @@ final class HotKeyMonitor {
                 return .southWest
             } else if directionSet.contains(.south) && directionSet.contains(.east) {
                 return .southEast
-            }
-        }
+                            }
+                        }
         
         // Invalid combination (more than 2 keys or conflicting directions)
         return nil
@@ -299,12 +325,15 @@ final class HotKeyMonitor {
         NSLog("🔍 HotKeyMonitor: performMove - using window, fromKeyboard=%@", fromKeyboard ? "YES" : "NO")
         
         if windowService.apply(direction: direction, to: window) {
+            // Only raise the window after a successful move
+            raiseWindowIfNeeded(window)
+            
             lastActiveWindow = window
             // For keyboard operations, also update the locked target to the same window
             // to ensure consistency
             if fromKeyboard {
                 lockedTargetWindow = window
-            } else {
+        } else {
                 lastOperationMousePosition = NSEvent.mouseLocation
             }
             
@@ -330,9 +359,6 @@ final class HotKeyMonitor {
         guard AccessibilityAuthorizer.isTrusted else { return }
 
         targetWindow = windowService.windowBelowCursor()
-        if let window = targetWindow {
-            AXUIElementPerformAction(window, kAXRaiseAction as CFString)
-        }
 
         guard let window = targetWindow, let frame = WindowService.frame(of: window) else {
             isActive = false; return
@@ -362,7 +388,7 @@ final class HotKeyMonitor {
         arrowMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.keyDown, .keyUp]) { [weak self] event in
             if event.type == .keyDown {
                 NSLog("[DEBUG] Resize mode - Global monitor detected keyDown: keyCode=%d", event.keyCode)
-                self?.handleArrowResize(event)
+            self?.handleArrowResize(event)
             } else if event.type == .keyUp {
                 self?.handleArrowResizeKeyUp(event)
             }
@@ -399,7 +425,10 @@ final class HotKeyMonitor {
                 newFrame = newFrame.intersection(screenFrame)
             }
 
-            _ = windowService.setFrame(newFrame, for: window)
+            if windowService.setFrame(newFrame, for: window) {
+                // Only raise the window after a successful move
+                raiseWindowIfNeeded(window)
+            }
             lastActiveWindow = window
             lastOperationMousePosition = NSEvent.mouseLocation
             highlighter.show(frame: newFrame, color: NSColor.systemPurple)
@@ -444,7 +473,10 @@ final class HotKeyMonitor {
         }
 
         // 5. Apply the frame and immediately read it back
-        _ = windowService.setFrame(finalFrame, for: window)
+        if windowService.setFrame(finalFrame, for: window) {
+            // Only raise the window after a successful resize
+            raiseWindowIfNeeded(window)
+        }
 
         if let actualFrame = WindowService.frame(of: window) {
             // 6. Learn limits for the *next* event by comparing the ideal calculated
@@ -490,9 +522,12 @@ final class HotKeyMonitor {
 
         if let scr = NSScreen.main { frame = frame.intersection(scr.visibleFrame) }
 
-        _ = windowService.setFrame(frame, for: window)
+        if windowService.setFrame(frame, for: window) {
+            // Only raise the window after a successful resize
+            raiseWindowIfNeeded(window)
+        }
 
-        if let actual = WindowService.frame(of: window) {
+            if let actual = WindowService.frame(of: window) {
             highlighter.show(frame: actual, color: NSColor.systemPurple, emphasis: edgeMask(), showGrid: true)
         }
     }

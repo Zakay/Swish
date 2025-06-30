@@ -2,6 +2,10 @@ import AppKit
 import ApplicationServices
 
 final class WindowService {
+    // MARK: - Animation Properties
+    private let animationDuration: TimeInterval = 0.15 // 150ms as requested
+    private var activeAnimations: [CFHashCode: Timer] = [:]
+    
     // MARK: - Tiling Actions
 
     @discardableResult
@@ -49,7 +53,7 @@ final class WindowService {
             // If we found a valid next screen, move the window there.
             if let nextScreen = nextScreen, nextScreen != currentScreen {
                 let targetFrameOnNextScreen = WindowLayout.frame(for: direction, on: nextScreen)
-                return setFrame(targetFrameOnNextScreen, for: window)
+                return setFrameAnimated(targetFrameOnNextScreen, for: window)
             } else {
                 // We're at the edge of the desktop on a single-screen setup, so do nothing.
                 return true
@@ -57,7 +61,7 @@ final class WindowService {
 
         } else {
             // Otherwise, just move it to the target spot on the current screen.
-            return setFrame(targetFrameOnCurrentScreen, for: window)
+            return setFrameAnimated(targetFrameOnCurrentScreen, for: window)
         }
     }
 
@@ -101,7 +105,51 @@ final class WindowService {
         return nil
     }
 
-    /// Sets the frame of a window using the Accessibility API.
+    // MARK: - Window Frame Management
+    
+    /// Sets the frame of a window with smooth animation using cubic easing.
+    /// Expects the frame to be in Cocoa's coordinate system (bottom-left origin).
+    @discardableResult
+    func setFrameAnimated(_ targetFrame: CGRect, for window: AXUIElement) -> Bool {
+        guard let currentFrame = Self.frame(of: window) else { return false }
+        
+        // If frames are already very close, just set directly
+        if currentFrame.isApproximately(targetFrame, tolerance: 5.0) {
+            return setFrame(targetFrame, for: window)
+        }
+        
+        // Check if animations are enabled
+        if !PreferencesManager.shared.animationsEnabled {
+            // If animations are disabled, just set the frame directly
+            return setFrame(targetFrame, for: window)
+        }
+        
+        // Cancel any existing animation for this window
+        let windowHash = CFHash(window)
+        if let existingTimer = activeAnimations[windowHash] {
+            existingTimer.invalidate()
+            activeAnimations.removeValue(forKey: windowHash)
+        }
+        
+        // Create animation context
+        let animationContext = WindowAnimationContext(
+            window: window,
+            startFrame: currentFrame,
+            targetFrame: targetFrame,
+            startTime: CACurrentMediaTime()
+        )
+        
+        // Create timer for animation updates (~60fps)
+        let timer = Timer.scheduledTimer(withTimeInterval: 1.0/60.0, repeats: true) { [weak self] timer in
+            self?.animationTick(timer, context: animationContext)
+        }
+        
+        activeAnimations[windowHash] = timer
+        
+        return true
+    }
+
+    /// Sets the frame of a window using the Accessibility API (immediate, no animation).
     /// Expects the frame to be in Cocoa's coordinate system (bottom-left origin).
     @discardableResult
     func setFrame(_ frame: CGRect, for window: AXUIElement) -> Bool {
@@ -123,6 +171,60 @@ final class WindowService {
         return posStatus == .success && sizeStatus == .success
     }
 
+    // MARK: - Animation Implementation
+    
+    private func animationTick(_ timer: Timer, context: WindowAnimationContext) {
+        let currentTime = CACurrentMediaTime()
+        let elapsed = currentTime - context.startTime
+        let progress = min(elapsed / animationDuration, 1.0)
+        
+        if progress >= 1.0 {
+            // Animation complete
+            _ = setFrame(context.targetFrame, for: context.window)
+            timer.invalidate()
+            
+            let windowHash = CFHash(context.window)
+            activeAnimations.removeValue(forKey: windowHash)
+            
+            // Show final highlight position
+            WindowHighlighter.shared.show(frame: context.targetFrame, color: NSColor.controlAccentColor)
+            return
+        }
+        
+        // Apply cubic easing (no bounce)
+        let easedProgress = cubicEaseOut(progress)
+        
+        // Calculate current frame with linear interpolation
+        let currentFrame = interpolateFrame(
+            from: context.startFrame,
+            to: context.targetFrame,
+            progress: easedProgress
+        )
+        
+        // Apply the interpolated frame
+        _ = setFrame(currentFrame, for: context.window)
+        
+        // Update highlighter to stay perfectly synchronized
+        WindowHighlighter.shared.show(frame: currentFrame, color: NSColor.controlAccentColor)
+    }
+    
+    /// Simple cubic ease-out function (no bounce)
+    private func cubicEaseOut(_ t: Double) -> Double {
+        return 1 - pow(1 - t, 3)
+    }
+    
+    /// Linear interpolation between two frames
+    private func interpolateFrame(from startFrame: CGRect, to targetFrame: CGRect, progress: Double) -> CGRect {
+        let t = CGFloat(progress)
+        
+        return CGRect(
+            x: startFrame.origin.x + (targetFrame.origin.x - startFrame.origin.x) * t,
+            y: startFrame.origin.y + (targetFrame.origin.y - startFrame.origin.y) * t,
+            width: startFrame.width + (targetFrame.width - startFrame.width) * t,
+            height: startFrame.height + (targetFrame.height - startFrame.height) * t
+        )
+    }
+
     /// Returns the frame of a window in Cocoa's coordinate system (bottom-left origin).
     static func frame(of window: AXUIElement) -> CGRect? {
         var posVal: CFTypeRef?
@@ -142,6 +244,22 @@ final class WindowService {
             cocoaFrame.origin.y = mainScreen.frame.height - cocoaFrame.origin.y - cocoaFrame.size.height
         }
         return cocoaFrame
+    }
+}
+
+// MARK: - Animation Support Types
+
+private class WindowAnimationContext {
+    let window: AXUIElement
+    let startFrame: CGRect
+    let targetFrame: CGRect
+    let startTime: TimeInterval
+    
+    init(window: AXUIElement, startFrame: CGRect, targetFrame: CGRect, startTime: TimeInterval) {
+        self.window = window
+        self.startFrame = startFrame
+        self.targetFrame = targetFrame
+        self.startTime = startTime
     }
 }
 

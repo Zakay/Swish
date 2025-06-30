@@ -13,42 +13,49 @@ final class HighlightingView: NSView {
         // Clear background
         context.clear(bounds)
 
-        // Draw subtle background tint
-        context.setFillColor(borderColor.withAlphaComponent(0.1).cgColor)
-        context.fill(bounds)
-
-        // Draw main border
+        // Define rounded corners (macOS standard window corner radius)
+        let cornerRadius: CGFloat = 8.0
+        
+        // Create rounded rectangle path for main border
         let borderWidth: CGFloat = 4.0
+        let borderRect = bounds.insetBy(dx: borderWidth / 2, dy: borderWidth / 2)
+        let borderPath = NSBezierPath(roundedRect: borderRect, xRadius: cornerRadius, yRadius: cornerRadius)
+
+        // Draw subtle background tint with rounded corners
+        context.setFillColor(borderColor.withAlphaComponent(0.1).cgColor)
+        context.addPath(borderPath.cgPath)
+        context.fillPath()
+
+        // Draw main border with rounded corners
         context.setStrokeColor(borderColor.withAlphaComponent(0.8).cgColor)
         context.setLineWidth(borderWidth)
-        let borderPath = NSBezierPath(rect: bounds.insetBy(dx: borderWidth / 2, dy: borderWidth / 2))
         context.addPath(borderPath.cgPath)
         context.strokePath()
 
-        // Draw emphasis on edges
+        // Draw emphasis on edges (still use straight lines for emphasis)
         context.setStrokeColor(borderColor.cgColor)
         context.setLineWidth(borderWidth * 2) // Make emphasis thicker
         let emphasisPath = NSBezierPath()
         if emphasisMask.contains(.top) {
-            emphasisPath.move(to: CGPoint(x: 0, y: bounds.height - borderWidth))
-            emphasisPath.line(to: CGPoint(x: bounds.width, y: bounds.height - borderWidth))
+            emphasisPath.move(to: CGPoint(x: cornerRadius, y: bounds.height - borderWidth))
+            emphasisPath.line(to: CGPoint(x: bounds.width - cornerRadius, y: bounds.height - borderWidth))
         }
         if emphasisMask.contains(.bottom) {
-            emphasisPath.move(to: CGPoint(x: 0, y: borderWidth))
-            emphasisPath.line(to: CGPoint(x: bounds.width, y: borderWidth))
+            emphasisPath.move(to: CGPoint(x: cornerRadius, y: borderWidth))
+            emphasisPath.line(to: CGPoint(x: bounds.width - cornerRadius, y: borderWidth))
         }
         if emphasisMask.contains(.left) {
-            emphasisPath.move(to: CGPoint(x: borderWidth, y: 0))
-            emphasisPath.line(to: CGPoint(x: borderWidth, y: bounds.height))
+            emphasisPath.move(to: CGPoint(x: borderWidth, y: cornerRadius))
+            emphasisPath.line(to: CGPoint(x: borderWidth, y: bounds.height - cornerRadius))
         }
         if emphasisMask.contains(.right) {
-            emphasisPath.move(to: CGPoint(x: bounds.width - borderWidth, y: 0))
-            emphasisPath.line(to: CGPoint(x: bounds.width - borderWidth, y: bounds.height))
+            emphasisPath.move(to: CGPoint(x: bounds.width - borderWidth, y: cornerRadius))
+            emphasisPath.line(to: CGPoint(x: bounds.width - borderWidth, y: bounds.height - cornerRadius))
         }
         context.addPath(emphasisPath.cgPath)
         context.strokePath()
 
-        // Draw 3x3 grid
+        // Draw 3x3 grid (respecting rounded corners)
         if showGrid {
             context.setStrokeColor(NSColor.white.withAlphaComponent(0.5).cgColor)
             context.setLineWidth(1.0)
@@ -56,16 +63,18 @@ final class HighlightingView: NSView {
             context.setLineDash(phase: 0, lengths: dashes)
 
             let gridPath = NSBezierPath()
+            let margin = cornerRadius + 5 // Add margin from rounded corners
+            
             // Vertical lines
-            gridPath.move(to: CGPoint(x: bounds.width / 3, y: 0))
-            gridPath.line(to: CGPoint(x: bounds.width / 3, y: bounds.height))
-            gridPath.move(to: CGPoint(x: 2 * bounds.width / 3, y: 0))
-            gridPath.line(to: CGPoint(x: 2 * bounds.width / 3, y: bounds.height))
+            gridPath.move(to: CGPoint(x: bounds.width / 3, y: margin))
+            gridPath.line(to: CGPoint(x: bounds.width / 3, y: bounds.height - margin))
+            gridPath.move(to: CGPoint(x: 2 * bounds.width / 3, y: margin))
+            gridPath.line(to: CGPoint(x: 2 * bounds.width / 3, y: bounds.height - margin))
             // Horizontal lines
-            gridPath.move(to: CGPoint(x: 0, y: bounds.height / 3))
-            gridPath.line(to: CGPoint(x: bounds.width, y: bounds.height / 3))
-            gridPath.move(to: CGPoint(x: 0, y: 2 * bounds.height / 3))
-            gridPath.line(to: CGPoint(x: bounds.width, y: 2 * bounds.height / 3))
+            gridPath.move(to: CGPoint(x: margin, y: bounds.height / 3))
+            gridPath.line(to: CGPoint(x: bounds.width - margin, y: bounds.height / 3))
+            gridPath.move(to: CGPoint(x: margin, y: 2 * bounds.height / 3))
+            gridPath.line(to: CGPoint(x: bounds.width - margin, y: 2 * bounds.height / 3))
             
             context.addPath(gridPath.cgPath)
             context.strokePath()

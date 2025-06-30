@@ -180,10 +180,9 @@ struct ScreenLayoutView: View {
                     let screenX = (screen.frame.minX - minX) * finalScaleX
                     let screenY = (screen.frame.minY - minY) * finalScaleY
                     
-                    // Add margin between screens - 8px spacing
-                    let margin: CGFloat = 8
-                    let marginX = screenX + (screenX > 0 ? margin * CGFloat(index) : 0)
-                    let marginY = screenY + (screenY > 0 ? margin * CGFloat(index) : 0)
+                    // Debug logging
+                    let _ = NSLog("🖥️ Screen \(index + 1): frame=(\(screen.frame.minX), \(screen.frame.minY), \(screen.frame.width), \(screen.frame.height))")
+                    let _ = NSLog("🖥️ Screen \(index + 1): aspectRatio=\(actualAspectRatio), displayPos=(\(screenX), \(screenY)), size=(\(screenDisplayWidth), \(screenDisplayHeight))")
                     
                     ScreenView(
                         screen: screen, 
@@ -192,8 +191,8 @@ struct ScreenLayoutView: View {
                         displaySize: CGSize(width: screenDisplayWidth, height: screenDisplayHeight)
                     )
                     .position(
-                        x: marginX + screenDisplayWidth / 2,
-                        y: marginY + screenDisplayHeight / 2
+                        x: screenX + screenDisplayWidth / 2,
+                        y: screenY + screenDisplayHeight / 2
                     )
                 }
             }

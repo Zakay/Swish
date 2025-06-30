@@ -1,0 +1,18 @@
+"/Users/zakay/dev/Swish/Swish/Domain/Direction.swift":
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Direction.dia"
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Direction.o"
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Direction.d"
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Direction.swiftconstvalues"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Direction.swiftdeps"
+"/Users/zakay/dev/Swish/Swish/Infrastructure/AccessibilityAuthorizer.swift":
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AccessibilityAuthorizer.d"
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AccessibilityAuthorizer.dia"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AccessibilityAuthorizer.swiftdeps"
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AccessibilityAuthorizer.o"
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AccessibilityAuthorizer.swiftconstvalues"
+"/Users/zakay/dev/Swish/Swish/Infrastructure/HotKeyMonitor.swift":
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotKeyMonitor.o"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotKeyMonitor.swiftdeps"
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotKeyMonitor.swiftconstvalues"
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotKeyMonitor.dia"
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotKeyMonitor.d"

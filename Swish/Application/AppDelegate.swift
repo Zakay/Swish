@@ -2,6 +2,28 @@ import AppKit
 import UserNotifications
 import SwiftUI
 
+// MARK: - Preferences Manager
+final class PreferencesManager: ObservableObject {
+    static let shared = PreferencesManager()
+    
+    private let animationsEnabledKey = "animationsEnabled"
+    
+    @Published var animationsEnabled: Bool {
+        didSet {
+            UserDefaults.standard.set(animationsEnabled, forKey: animationsEnabledKey)
+        }
+    }
+    
+    private init() {
+        // Default to enabled if no previous setting exists
+        if UserDefaults.standard.object(forKey: animationsEnabledKey) != nil {
+            self.animationsEnabled = UserDefaults.standard.bool(forKey: animationsEnabledKey)
+        } else {
+            self.animationsEnabled = true // Default is ON
+        }
+    }
+}
+
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusController: StatusItemController!
     private var settingsWindowController: SettingsWindowController?

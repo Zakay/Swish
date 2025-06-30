@@ -1,0 +1,18 @@
+"/Users/zakay/dev/Swish/Swish/Domain/Direction.swift":
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/Direction.dia"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/Direction.swiftdeps"
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/Direction.swiftconstvalues"
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/Direction.o"
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/Direction.d"
+"/Users/zakay/dev/Swish/Swish/Infrastructure/AccessibilityAuthorizer.swift":
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/AccessibilityAuthorizer.o"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/AccessibilityAuthorizer.swiftdeps"
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/AccessibilityAuthorizer.dia"
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/AccessibilityAuthorizer.d"
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/AccessibilityAuthorizer.swiftconstvalues"
+"/Users/zakay/dev/Swish/Swish/Infrastructure/HotKeyMonitor.swift":
+  diagnostics: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/HotKeyMonitor.dia"
+  object: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/HotKeyMonitor.o"
+  swift-dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/HotKeyMonitor.swiftdeps"
+  const-values: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/HotKeyMonitor.swiftconstvalues"
+  dependencies: "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/x86_64/HotKeyMonitor.d"

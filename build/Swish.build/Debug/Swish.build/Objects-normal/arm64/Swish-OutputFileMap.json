@@ -1,0 +1,338 @@
+{
+  "" : {
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Swish-master.dia",
+    "emit-module-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Swish-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Swish-master-emit-module.dia",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Swish-master.swiftdeps"
+  },
+  "/Users/zakay/dev/Swish/Swish/Application/AppDelegate.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AppDelegate.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AppDelegate.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AppDelegate.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/AppDelegate.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AppDelegate.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AppDelegate.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AppDelegate.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AppDelegate~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/Application/HotkeyManager.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyManager.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyManager.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyManager.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyManager.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyManager.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyManager.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyManager.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyManager~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/Domain/Direction.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Direction.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Direction.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Direction.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/Direction.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Direction.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Direction.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Direction.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Direction~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/Domain/Profile.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Profile.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Profile.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Profile.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/Profile.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Profile.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Profile.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Profile.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/Profile~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/Domain/VectorDetector.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/VectorDetector.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/VectorDetector.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/VectorDetector.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/VectorDetector.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/VectorDetector.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/VectorDetector.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/VectorDetector.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/VectorDetector~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/Domain/WindowLayout.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowLayout.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowLayout.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowLayout.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowLayout.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowLayout.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowLayout.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowLayout.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowLayout~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/Infrastructure/AccessibilityAuthorizer.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AccessibilityAuthorizer.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AccessibilityAuthorizer.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AccessibilityAuthorizer.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/AccessibilityAuthorizer.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AccessibilityAuthorizer.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AccessibilityAuthorizer.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AccessibilityAuthorizer.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AccessibilityAuthorizer~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/Infrastructure/HotKeyMonitor.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotKeyMonitor.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotKeyMonitor.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotKeyMonitor.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotKeyMonitor.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotKeyMonitor.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotKeyMonitor.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotKeyMonitor.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotKeyMonitor~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/Infrastructure/ProfileManager.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileManager.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileManager.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileManager.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileManager.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileManager.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileManager.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileManager.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileManager~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/Infrastructure/WindowHighlighter.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowHighlighter.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowHighlighter.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowHighlighter.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowHighlighter.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowHighlighter.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowHighlighter.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowHighlighter.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowHighlighter~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/Infrastructure/WindowMovementTracker.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowMovementTracker.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowMovementTracker.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowMovementTracker.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowMovementTracker.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowMovementTracker.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowMovementTracker.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowMovementTracker.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowMovementTracker~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/Infrastructure/WindowService.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowService.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowService.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowService.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowService.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowService.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowService.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowService.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WindowService~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/SwishApp.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SwishApp.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SwishApp.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SwishApp.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/SwishApp.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SwishApp.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SwishApp.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SwishApp.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SwishApp~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/ContentView.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/HighlightingView.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HighlightingView.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HighlightingView.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HighlightingView.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/HighlightingView.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HighlightingView.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HighlightingView.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HighlightingView.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HighlightingView~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Onboarding/MonitorSlide.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/MonitorSlide.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/MonitorSlide.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/MonitorSlide.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/MonitorSlide.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/MonitorSlide.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/MonitorSlide.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/MonitorSlide.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/MonitorSlide~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Onboarding/OnboardingSlide.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingSlide.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingSlide.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingSlide.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingSlide.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingSlide.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingSlide.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingSlide.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingSlide~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Onboarding/OnboardingView.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingView.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingView.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingView.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingView.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingView.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingView.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingView.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingView~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Onboarding/OnboardingWindowController.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingWindowController.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingWindowController.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingWindowController.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingWindowController.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingWindowController.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingWindowController.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingWindowController.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/OnboardingWindowController~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Onboarding/ProfileSlide.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileSlide.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileSlide.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileSlide.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileSlide.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileSlide.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileSlide.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileSlide.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfileSlide~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Onboarding/ResizeSlide.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ResizeSlide.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ResizeSlide.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ResizeSlide.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/ResizeSlide.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ResizeSlide.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ResizeSlide.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ResizeSlide.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ResizeSlide~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Onboarding/TilingSlide.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/TilingSlide.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/TilingSlide.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/TilingSlide.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/TilingSlide.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/TilingSlide.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/TilingSlide.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/TilingSlide.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/TilingSlide~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Onboarding/WelcomeSlide.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WelcomeSlide.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WelcomeSlide.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WelcomeSlide.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/WelcomeSlide.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WelcomeSlide.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WelcomeSlide.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WelcomeSlide.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/WelcomeSlide~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Settings/AboutView.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AboutView.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AboutView.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AboutView.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/AboutView.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AboutView.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AboutView.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AboutView.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/AboutView~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Settings/GeneralView.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneralView.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneralView.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneralView.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneralView.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneralView.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneralView.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneralView.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneralView~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Settings/HotkeyRecorderView.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyRecorderView.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyRecorderView.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyRecorderView.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyRecorderView.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyRecorderView.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyRecorderView.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyRecorderView.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/HotkeyRecorderView~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Settings/LoginItemManager.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/LoginItemManager.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/LoginItemManager.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/LoginItemManager.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/LoginItemManager.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/LoginItemManager.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/LoginItemManager.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/LoginItemManager.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/LoginItemManager~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Settings/ProfilesView.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfilesView.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfilesView.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfilesView.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfilesView.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfilesView.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfilesView.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfilesView.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/ProfilesView~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Settings/SaveProfileWindowController.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SaveProfileWindowController.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SaveProfileWindowController.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SaveProfileWindowController.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/SaveProfileWindowController.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SaveProfileWindowController.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SaveProfileWindowController.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SaveProfileWindowController.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SaveProfileWindowController~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Settings/SettingsView.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsView.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsView.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsView.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsView.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsView.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsView.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsView.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsView~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/Settings/SettingsWindowController.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsWindowController.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsWindowController.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsWindowController.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsWindowController.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsWindowController.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsWindowController.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsWindowController.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/SettingsWindowController~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/Swish/UI/StatusItem/StatusItemController.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/StatusItemController.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/StatusItemController.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/StatusItemController.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/StatusItemController.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/StatusItemController.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/StatusItemController.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/StatusItemController.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/StatusItemController~partial.swiftmodule"
+  },
+  "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/zakay/dev/Swish/build/Swish.build/Debug/Swish.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  }
+}

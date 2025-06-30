@@ -1,0 +1,40 @@
+{
+  "source": "/Users/zakay/dev/Swish/Swish/UI/Settings/SaveProfileWindowController.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Save Current Layout as Profile",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 47
+        }
+      },
+      {
+        "comment": "",
+        "key": "Profile Name",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cancel",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 57
+        }
+      },
+      {
+        "comment": "",
+        "key": "Save",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 60
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,32 @@
+{
+  "source": "/Users/zakay/dev/Swish/Swish/UI/Onboarding/MonitorSlide.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Multi-Monitor Support",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 13
+        }
+      },
+      {
+        "comment": "",
+        "key": "If a window is already in the target spot, Swish will move it to the next available screen.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 16
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hold %@",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 50
+        }
+      }
+    ]
+  },
+  "version": 1
+}

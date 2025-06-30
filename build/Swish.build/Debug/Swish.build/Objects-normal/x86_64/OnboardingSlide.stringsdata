@@ -1,0 +1,16 @@
+{
+  "source": "/Users/zakay/dev/Swish/Swish/UI/Onboarding/OnboardingSlide.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "OnboardingSlide Protocol",
+        "location": {
+          "startingColumn": 1,
+          "startingLine": 7
+        }
+      }
+    ]
+  },
+  "version": 1
+}

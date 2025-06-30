@@ -5,6 +5,7 @@ import ServiceManagement
 struct GeneralView: View {
     @StateObject private var loginItemManager = LoginItemManager()
     @ObservedObject private var hotkeyManager = HotkeyManager.shared
+    @ObservedObject private var preferencesManager = PreferencesManager.shared
     @State private var showingTileHotkeyRecorder = false
     @State private var showingResizeHotkeyRecorder = false
     @State private var showingSaveProfileHotkeyRecorder = false
@@ -60,6 +61,13 @@ struct GeneralView: View {
                             hotkeyManager.saveProfileHotkeyCharacter = character
                         }
                     }
+                }
+                .padding(.vertical, 4)
+
+                HStack {
+                    Text("Enable smooth window animations")
+                    Spacer()
+                    Toggle("", isOn: $preferencesManager.animationsEnabled)
                 }
                 .padding(.vertical, 4)
             }
