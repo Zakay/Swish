@@ -1,7 +1,7 @@
 # Swish
 ![image](https://github.com/user-attachments/assets/681178af-c152-46c3-9e60-145212a16e3d)
 
-A **macOS menu‑bar window manager** that lets you *swish* windows into place—throw, resize, and move them across multiple monitors with keys or a flick of the mouse, no title bars or edges required.
+A **macOS menu‑bar window manager** that lets you *swish* windows into place—throw, resize, and move them across multiple monitors with keys or a flick of the mouse, no title bars or edges required. Save and restore complete workspace layouts with Window Profiles for instant productivity switching.
 
 ![ezgif-8caee868b368df](https://github.com/user-attachments/assets/5f515a2a-d705-46ab-bc43-d29d26092b7d)
 
@@ -9,37 +9,39 @@ A **macOS menu‑bar window manager** that lets you *swish* windows into place�
 
 ## Why This App Exists
 
-Traditional macOS window managers expect you to memorise a maze of shortcuts or drag windows to tiny hotspots. That breaks your flow. **When you want to focus, it should feel effortless to snap a window left, toss it to another display, or shrink it for reference—without hunting edges or title‑bars.**
+Traditional macOS window managers expect you to memorise a maze of shortcuts or drag windows to tiny hotspots. That breaks your flow. **When you want to focus, it should feel effortless to snap a window left, toss it to another display, or shrink it for reference—without hunting edges or title‑bars.** And when you switch between different types of work, you shouldn't have to rebuild your entire workspace from scratch.
 
-Swish is built on one idea: *"Windows should follow your intent, not the other way around."* It pairs keyboard shortcuts **and** direction‑aware mouse gestures so you can manage space instinctively on one screen or many.
+Swish is built on one idea: *"Windows should follow your intent, not the other way around."* It pairs keyboard shortcuts **and** direction‑aware mouse gestures so you can manage space instinctively on one screen or many. Save your perfect layouts as Profiles and instantly switch between "coding mode," "design mode," or any workspace configuration you need.
 
 ---
 
 ## What It Does
 
-Swish lives quietly in the menu bar and gives you fast, rule‑free control over window placement and size. Two core modes keep things simple:
+Swish lives quietly in the menu bar and gives you fast, rule‑free control over window placement and size. Three core features keep things simple:
 
 1. **Tile Mode** – Hit your Tile Hotkey, then flick the cursor or tap an arrow key to *throw* the frontmost window in any of **eight directions** (← ↖ ↑ ↗ → ↘ ↓ ↙). If you reach the edge of a display, the window continues onto the next monitor in the same relative position.
-2. **Resize Mode** – Press your Resize Hotkey and arrow‑tap (or keep flicking) to grow or shrink the window—no edge‑grabbing needed. **Move‑within‑Resize:** when this mode is active *and* your cursor rests near the centre of the window, the same gestures will *move* the window instead of resizing it.
+2. **Resize Mode** – Press your Resize Hotkey and arrow‑tap (or keep flicking) to grow or shrink the window—no edge‑grabbing needed. **Move‑within‑Resize:** when this mode is active *and* your cursor rests near the centre of the window, the same gestures will *move* the window instead of resizing it.
+3. **Window Profiles** – Save your current window layout across all monitors as a named profile, then instantly restore it later. Perfect for switching between work contexts—save your "coding setup" with editor, terminal, and browser positioned exactly how you like, then switch to "design mode" with different apps and arrangements.
 
-Both hotkeys are fully configurable in **Settings**, and the built‑in onboarding reflects your custom choices on every page.
+All hotkeys are fully configurable in **Settings**, and the built‑in onboarding reflects your custom choices on every page.
 
 ---
 
 ## Features
 
-* **Keyboard or Mouse Control** – Use the default hotkeys *or* a quick flick; Swish recognises the direction and acts.
+* **Keyboard or Mouse Control** – Use the default hotkeys *or* a quick flick; Swish recognises the direction and acts.
 * **Eight‑Direction Tiling** – Snap to edges *or* corners with arrow keys or diagonal flicks.
 * **Resize & Move Mode** – Resize from anywhere, then slide a window when your cursor sits in the centre.
 * **Multi‑Monitor Awareness** – Throw a window past the edge and it glides onto the next display.
+* **Window Profiles** – Save and restore complete window layouts across multiple monitors. Perfect for switching between different workspace configurations like "coding mode" or "design mode".
 * **Hotkey Reassignment** – Change Tile and Resize Hotkeys at any time; onboarding updates automatically.
-* **100 % Public APIs** – Built entirely with App Kit and Accessibility APIs—no private frameworks or hacks.
+* **100 % Public APIs** – Built entirely with App Kit and Accessibility APIs—no private frameworks or hacks.
 
 ---
 
 ## The Development Story
 
-Swish is yet another project in my ongoing "AI Vibe Coding" experiment. Like NoDoze and AudioProfiles, **every file**—code, icons, README—was generated by an AI. My role was to specify requirements and architecture, then review the output. I haven’t read every line, so there may be oddities or hallucinations. Use at your own risk—but feel free to inspect the open‑source code yourself.
+Swish is yet another project in my ongoing "AI Vibe Coding" experiment. Like NoDoze and AudioProfiles, **every file**—code, icons, README—was generated by an AI. My role was to specify requirements and architecture, then review the output. I haven't read every line, so there may be oddities or hallucinations. Use at your own risk—but feel free to inspect the open‑source code yourself.
 
 ---
 
@@ -55,7 +57,7 @@ The app will appear in your menu bar.
 
 ## Contributing
 
-Pull requests and issues are welcome—especially around gesture accuracy, Accessibility edge‑cases, or novel tiling behaviours. If you have insights on improving AI‑assisted coding workflows, I’m all ears!
+Pull requests and issues are welcome—especially around gesture accuracy, Accessibility edge‑cases, or novel tiling behaviours. If you have insights on improving AI‑assisted coding workflows, I'm all ears!
 
 ---
 
