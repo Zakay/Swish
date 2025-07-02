@@ -86,7 +86,10 @@ final class WindowService {
                 let pid = windowInfo[kCGWindowOwnerPID as String] as? pid_t,
                 let ownerName = windowInfo[kCGWindowOwnerName as String] as? String,
                 // Ignore our own app and other UI elements.
-                ownerName != "Swish" && ownerName != "Dock" && ownerName != "Window Server" && ownerName != "System Settings"
+                ownerName != "Swish" && ownerName != "Dock" && ownerName != "Window Server" && ownerName != "System Settings",
+                // Only consider normal application windows (layer 0), ignore notifications and system overlays
+                let layer = windowInfo[kCGWindowLayer as String] as? Int,
+                layer == 0
             else {
                 continue
             }
