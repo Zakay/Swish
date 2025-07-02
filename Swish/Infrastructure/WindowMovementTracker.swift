@@ -43,24 +43,27 @@ final class WindowMovementTracker {
             guard let currentAX = WindowService.frame(of: entry.element) else {
                 toRemove.append(key); continue }
 
-            // If user moved/resized the window we forget it
-            if !framesEqual(currentAX, entry.lastFrameAX) {
-                toRemove.append(key); continue }
-
-            // Compute desired frame in Cocoa space then convert to AX for compare
+            // Calculate what the window should be at this moment (based on current screen state)
             guard let screen = screen(containingAX: currentAX) else { continue }
+            
             let desiredCocoa = WindowLayout.frame(for: entry.direction, on: screen)
             var desiredAX = desiredCocoa
             desiredAX.origin.y = screen.frame.maxY - desiredCocoa.origin.y - desiredCocoa.height
 
-            if framesEqual(currentAX, desiredAX) {
-                // Already correct, just update stored frame
-                entries[key]?.lastFrameAX = currentAX
-            } else {
-                // Move it and update memory
-                _ = windowService.setFrame(desiredCocoa, for: entry.element)
-                entries[key]?.lastFrameAX = desiredAX
+            // If user manually moved/resized the window (it's far from expected position), forget it
+            // Use a more permissive tolerance for dock changes, and only check position (not size)
+            let userChangeTolerance: CGFloat = 50.0 // Much more permissive for dock changes
+            let isCloseToExpected = abs(currentAX.origin.x - desiredAX.origin.x) < userChangeTolerance &&
+                                   abs(currentAX.origin.y - desiredAX.origin.y) < userChangeTolerance
+
+            if !isCloseToExpected {
+                toRemove.append(key); continue 
             }
+
+            // Window is close to expected position, so restore it to the exact target frame
+            // This handles dock appear/disappear scenarios
+            _ = windowService.setFrame(desiredCocoa, for: entry.element)
+            entries[key]?.lastFrameAX = desiredAX
         }
         for k in toRemove { entries.removeValue(forKey: k) }
     }
