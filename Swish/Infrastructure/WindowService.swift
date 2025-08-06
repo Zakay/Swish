@@ -161,10 +161,14 @@ final class WindowService {
     @discardableResult
     func setFrame(_ frame: CGRect, for window: AXUIElement) -> Bool {
         var origin = frame.origin
-        // The coordinate conversion needs to be relative to the *main* screen,
-        // as the Accessibility API's "top-left" is based on the primary display's menu bar.
-        if let mainScreen = NSScreen.main {
-            origin.y = mainScreen.frame.height - frame.origin.y - frame.size.height
+        // Find the screen that contains this window's center point for proper coordinate conversion
+        let windowCenter = CGPoint(x: frame.midX, y: frame.midY)
+        let targetScreen = NSScreen.screens.first { $0.frame.contains(windowCenter) } ?? NSScreen.main
+        
+        // The coordinate conversion needs to be relative to the screen containing the window,
+        // as the Accessibility API's "top-left" is based on the screen's coordinate system.
+        if let screen = targetScreen {
+            origin.y = screen.frame.height - frame.origin.y - frame.size.height
         }
         var size = frame.size
 
@@ -250,9 +254,12 @@ final class WindowService {
         AXValueGetValue(sizeAX as! AXValue, .cgSize, &size)
 
         var cocoaFrame = CGRect(origin: origin, size: size)
-        // Convert from primary screen's top-left to bottom-left
-        if let mainScreen = NSScreen.main {
-            cocoaFrame.origin.y = mainScreen.frame.height - cocoaFrame.origin.y - cocoaFrame.size.height
+        // Convert from the screen's top-left to bottom-left coordinate system
+        // We need to find which screen this window belongs to for proper conversion
+        let windowCenter = CGPoint(x: origin.x + size.width/2, y: origin.y + size.height/2)
+        let targetScreen = NSScreen.screens.first { $0.frame.contains(windowCenter) } ?? NSScreen.main
+        if let screen = targetScreen {
+            cocoaFrame.origin.y = screen.frame.height - cocoaFrame.origin.y - cocoaFrame.size.height
         }
         return cocoaFrame
     }

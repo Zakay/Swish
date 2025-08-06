@@ -48,7 +48,7 @@ final class WindowMovementTracker {
             
             let desiredCocoa = WindowLayout.frame(for: entry.direction, on: screen)
             var desiredAX = desiredCocoa
-            desiredAX.origin.y = screen.frame.maxY - desiredCocoa.origin.y - desiredCocoa.height
+            desiredAX.origin.y = screen.frame.height - desiredCocoa.origin.y - desiredCocoa.height
 
             // If user manually moved/resized the window (it's far from expected position), forget it
             // Use a more permissive tolerance for dock changes, and only check position (not size)
