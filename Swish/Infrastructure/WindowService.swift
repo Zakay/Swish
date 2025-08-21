@@ -5,9 +5,30 @@ final class WindowService {
     // MARK: - Animation Properties
     private let animationDuration: TimeInterval = 0.15 // 150ms as requested
     private var activeAnimations: [CFHashCode: Timer] = [:]
+    private var animationContexts: [CFHashCode: WindowAnimationContext] = [:]
     
     // MARK: - Mode State Tracking
     static var isTileModeActive: Bool = false
+    
+    // MARK: - Display Refresh Rate
+    
+    /// Gets the refresh rate of the main display in Hz
+    private var displayRefreshRate: Double {
+        // Get the main display's refresh rate
+        if let mainDisplayID = NSScreen.main?.deviceDescription[NSDeviceDescriptionKey("NSScreenNumber")] as? CGDirectDisplayID {
+            if let displayMode = CGDisplayCopyDisplayMode(mainDisplayID) {
+                let refreshRate = displayMode.refreshRate
+                // If we can't get the refresh rate, fall back to 60Hz
+                return refreshRate > 0 ? refreshRate : 60.0
+            }
+        }
+        return 60.0 // Fallback
+    }
+    
+    /// Gets the animation frame interval based on display refresh rate
+    private var animationFrameInterval: TimeInterval {
+        return 1.0 / displayRefreshRate
+    }
     
     // MARK: - Tiling Actions
 
@@ -135,6 +156,7 @@ final class WindowService {
         if let existingTimer = activeAnimations[windowHash] {
             existingTimer.invalidate()
             activeAnimations.removeValue(forKey: windowHash)
+            animationContexts.removeValue(forKey: windowHash)
         }
         
         // Create animation context
@@ -146,12 +168,17 @@ final class WindowService {
             showFinalHighlight: showFinalHighlight
         )
         
-        // Create timer for animation updates (~60fps)
-        let timer = Timer.scheduledTimer(withTimeInterval: 1.0/60.0, repeats: true) { [weak self] timer in
-            self?.animationTick(timer, context: animationContext)
+        // Create Timer for smooth animation synchronized with display refresh
+        let frameInterval = animationFrameInterval
+        let refreshRate = displayRefreshRate
+        
+        let timer = Timer.scheduledTimer(withTimeInterval: frameInterval, repeats: true) { [weak self] timer in
+            self?.animationTick(timer)
         }
         
+        // Store both the timer and context
         activeAnimations[windowHash] = timer
+        animationContexts[windowHash] = animationContext
         
         return true
     }
@@ -184,23 +211,32 @@ final class WindowService {
 
     // MARK: - Animation Implementation
     
-    private func animationTick(_ timer: Timer, context: WindowAnimationContext) {
+    @objc private func animationTick(_ timer: Timer) {
+        // Find the animation context for this timer
+        guard let context = findAnimationContext(for: timer) else {
+            timer.invalidate()
+            return
+        }
+        
         let currentTime = CACurrentMediaTime()
         let elapsed = currentTime - context.startTime
         let progress = min(elapsed / animationDuration, 1.0)
         
         if progress >= 1.0 {
-            // Animation complete
+            // Animation complete - ensure we're exactly at the target frame
             _ = setFrame(context.targetFrame, for: context.window)
-            timer.invalidate()
             
-            let windowHash = CFHash(context.window)
-            activeAnimations.removeValue(forKey: windowHash)
-            
-            // Show final highlight position only if tile mode is still active
+            // ALWAYS update highlighter to final position when animation completes
+            // This ensures the highlighter matches the window exactly
             if context.showFinalHighlight && Self.isTileModeActive {
                 WindowHighlighter.shared.show(frame: context.targetFrame, color: NSColor.controlAccentColor)
             }
+            
+            // Clean up animation state
+            timer.invalidate()
+            let windowHash = CFHash(context.window)
+            activeAnimations.removeValue(forKey: windowHash)
+            animationContexts.removeValue(forKey: windowHash)
             return
         }
         
@@ -217,10 +253,24 @@ final class WindowService {
         // Apply the interpolated frame
         _ = setFrame(currentFrame, for: context.window)
         
-        // Update highlighter to stay perfectly synchronized only if tile mode is still active
+        // Update highlighter during animation
+        // Update more frequently near the end of animation to ensure smooth transition
         if Self.isTileModeActive {
-            WindowHighlighter.shared.show(frame: currentFrame, color: NSColor.controlAccentColor)
+            let frameNumber = Int(progress * displayRefreshRate)
+            let shouldUpdate = frameNumber % 3 == 0 || progress > 0.8 // Update every 3rd frame, or every frame in last 20%
+            if shouldUpdate {
+                WindowHighlighter.shared.show(frame: currentFrame, color: NSColor.controlAccentColor)
+            }
         }
+    }
+    
+    private func findAnimationContext(for timer: Timer) -> WindowAnimationContext? {
+        for (windowHash, activeTimer) in activeAnimations {
+            if activeTimer === timer {
+                return animationContexts[windowHash]
+            }
+        }
+        return nil
     }
     
     /// Simple cubic ease-out function (no bounce)

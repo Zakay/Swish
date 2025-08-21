@@ -317,27 +317,33 @@ final class HotKeyMonitor {
     }
 
     private func performMove(direction: Direction, fromKeyboard: Bool = false) {
-        // For keyboard operations, always use the locked target window
+        // For keyboard operations, ALWAYS use the locked target window to prevent window switching
+        // For mouse operations, use the current target window (which can change based on mouse position)
         let window = fromKeyboard ? (lockedTargetWindow ?? targetWindow) : targetWindow
         guard let window = window else { 
             NSLog("🔍 HotKeyMonitor: performMove - no target window available")
             return 
         }
         
-        NSLog("🔍 HotKeyMonitor: performMove - using window, fromKeyboard=%@", fromKeyboard ? "YES" : "NO")
+        NSLog("🔍 HotKeyMonitor: performMove - using window, fromKeyboard=%@, lockedWindow=%@", 
+              fromKeyboard ? "YES" : "NO", 
+              lockedTargetWindow != nil ? "SET" : "NIL")
         
         if windowService.apply(direction: direction, to: window, showFinalHighlight: false) {
             // Only raise the window after a successful move
             raiseWindowIfNeeded(window)
             
             lastActiveWindow = window
-            // For keyboard operations, also update the locked target to the same window
-            // to ensure consistency
+            // For keyboard operations, ensure the locked target remains the same window
+            // This prevents accidental window switching during rapid arrow key presses
             if fromKeyboard {
-                lockedTargetWindow = window
-        } else {
-                lastOperationMousePosition = NSEvent.mouseLocation
+                // CRITICAL: Do not reassign lockedTargetWindow during keyboard operations
+                // It should remain locked to the initial window throughout the entire tile session
+                NSLog("🔍 HotKeyMonitor: Keyboard operation successful, keeping lockedTargetWindow unchanged")
             }
+            
+            // Store mouse position for successful operations
+            lastOperationMousePosition = NSEvent.mouseLocation
             
             if let actualFrame = WindowService.frame(of: window) {
                 // Only show immediate highlight for keyboard operations
